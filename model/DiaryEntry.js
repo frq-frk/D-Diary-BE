@@ -64,4 +64,22 @@ const getEntry = (cName) => {
     })
 }
 
-module.exports = { createEntry, getEntry }
+const getEntryByMonthYear = (cName, month, year) => {
+    return new Promise(async (resolve, reject) => {
+        let entryCollection = createDiaryEntry(cName);
+
+        const exp = `^${year}-${month}-`;
+        console.log(exp)
+        try {
+            let obj = await entryCollection.find({date : new RegExp(exp)})
+            if(obj.length === 0)
+                resolve({"msg":"There are no entries"})
+            else
+            resolve(obj)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+module.exports = { createEntry, getEntry, getEntryByMonthYear }
