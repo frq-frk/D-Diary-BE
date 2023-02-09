@@ -82,4 +82,20 @@ const getEntryByMonthYear = (cName, month, year) => {
     })
 }
 
-module.exports = { createEntry, getEntry, getEntryByMonthYear }
+const getEntryOfToday = (cName) => {
+    return new Promise(async (resolve, reject) => {
+        let entryCollection = createDiaryEntry(cName);
+        const exp = getCurrentDate('-');
+        try{
+            let obj = await entryCollection.find({date:exp})
+            if(!obj)
+                reject({"msg" : "Empty"})
+            else
+                resolve(obj)
+        }catch(e){
+            reject(e)
+        }
+    })
+}
+
+module.exports = { createEntry, getEntry, getEntryByMonthYear, getEntryOfToday }

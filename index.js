@@ -3,9 +3,10 @@ require('dotenv').config()
 const cors = require('cors')
 const { db } = require('./db')
 
-const { createEntry, getEntry, getEntryByMonthYear } = require('./model/DiaryEntry')
+const { createEntry, getEntry, getEntryByMonthYear, getEntryOfToday } = require('./model/DiaryEntry')
 
-const authMiddleware = require('./firebase/auth-middleware')
+const authMiddleware = require('./firebase/auth-middleware');
+const { request, response } = require('express');
 
 const app = express();
 app.use(cors())
@@ -79,6 +80,22 @@ app.get("/entry", (request, response) => {
 app.get("/entrybymonth", (request, response) => {
   console.log(request.query)
   getEntryByMonthYear(request.user, request.query.month, request.query.year)
+    .then((obj) => {
+      if (obj.msg || obj.message)
+        response.statusCode = 404
+      else
+        response.statusCode = 200
+      response.send(obj)
+    })
+    .catch((e) => {
+      console.log(e)
+      response.statusCode = 500
+      response.send(e)
+    })
+})
+
+app.get("/entrybytoday", (request, response) => {
+  getEntryOfToday(request.user)
     .then((obj) => {
       if (obj.msg || obj.message)
         response.statusCode = 404
