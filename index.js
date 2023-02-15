@@ -4,6 +4,7 @@ const cors = require('cors')
 const { db } = require('./db')
 
 const { createEntry, getEntry, getEntryByMonthYear, getEntryOfToday } = require('./model/DiaryEntry')
+const { createProfile, updateProfile, getProfile, incrimentEntries} = require('./model/UserProfile') 
 
 const authMiddleware = require('./firebase/auth-middleware');
 const { request, response } = require('express');
@@ -108,6 +109,54 @@ app.get("/entrybytoday", (request, response) => {
       response.statusCode = 500
       response.send(e)
     })
+})
+
+app.post("/userprofile", (request, response) => {
+  createProfile(request.user)
+  .then((obj) => {
+    response.statusCode = 200
+    response.send(obj)
+  }).catch((e) => {
+    response.statusCode = 500
+    response.send(e)
+  })
+})
+
+app.put("/userprofile", (request, response) => {
+  const data = request.body
+  // console.log(data)
+  updateProfile(request.user,data).then((obj) => {
+    response.statusCode = 200
+    response.send(obj)
+  }).catch((e) => {
+    response.statusCode = 500
+    response.send(e)
+  })
+})
+
+app.get("/userprofile", (request, response) => {
+  getProfile(request.user)
+  .then((obj) => {
+    response.statusCode = 200;
+    response.send(obj);
+  })
+  .catch((e) => {
+    response.statusCode = 404;
+    response.send(e);
+  })
+})
+
+app.put("/incremententries", (request, response) => {
+  // console.log(request.user)
+  incrimentEntries(request.user)
+  .then((obj) => {
+    response.statusCode = 200;
+    response.send(obj);
+  })
+  .catch((e) => {
+    response.statusCode = 404;
+    response.send(e);
+  })
 })
 
 app.listen(port, () => {

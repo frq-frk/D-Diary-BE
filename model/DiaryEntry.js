@@ -1,6 +1,6 @@
 const e = require('express');
 const mongoose = require('mongoose');
-const { db } = require('./../db')
+require('./../db')
 const { getCurrentDate } = require('../DateUtils')
 
 function createDiaryEntry(collectionName) {
