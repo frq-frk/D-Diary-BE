@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { getCurrentYear, getCurrentMonthName } = require('../DateUtils')
+const { getCurrentYear, getCurrentMonthName } = require('../../utils/DateUtils')
 
 const ProfileSchema = new mongoose.Schema({
     userId: {

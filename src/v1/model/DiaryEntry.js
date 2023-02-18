@@ -1,7 +1,7 @@
 const e = require('express');
 const mongoose = require('mongoose');
-require('./../db')
-const { getCurrentDate } = require('../DateUtils')
+require('../../utils/db')
+const { getCurrentDate } = require('../../utils/DateUtils')
 
 function createDiaryEntry(collectionName) {
     const EntrySchema = new mongoose.Schema({

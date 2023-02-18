@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth"
 
+
 const firebaseConfig = {
-    apiKey: "AIzaSyAMp1YyBIPCMJ6QHd5dmYfiCA4St67I4B8",
+    apiKey: process.env.FIREBASE_API_KEY,
     authDomain: "ddiary-v1.firebaseapp.com",
     projectId: "ddiary-v1",
     storageBucket: "ddiary-v1.appspot.com",
