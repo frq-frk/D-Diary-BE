@@ -3,7 +3,7 @@ import { getAuth } from "firebase/auth"
 
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
+    apiKey: "AIzaSyAMp1YyBIPCMJ6QHd5dmYfiCA4St67I4B8",
     authDomain: "ddiary-v1.firebaseapp.com",
     projectId: "ddiary-v1",
     storageBucket: "ddiary-v1.appspot.com",
