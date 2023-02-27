@@ -6,7 +6,7 @@ const app = initializeApp({
 
 function authMiddleware(request, response, next) {
   const headerToken = request.headers.authorization;
-  // console.log(headerToken)
+  console.log(headerToken)
   if (!headerToken) {
     return response.send({ message: "No token provided" }).status(401);
   }
@@ -26,7 +26,7 @@ function authMiddleware(request, response, next) {
       next()
     })
     .catch((e) => {
-      console.log(e)
+       
       response.send({ message: "Could not authorize" }).status(403)
     });
 }

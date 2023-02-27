@@ -36,7 +36,7 @@ app.post("/entry", (request, response) => {
   createEntry(request.user, data)
     .then((obj) => response.send(obj))
     .catch((e) => {
-      console.log(e)
+       
       response.statusCode = 500
       response.send(e)
     })
@@ -52,7 +52,7 @@ app.get("/entry", (request, response) => {
       response.send(obj)
     })
     .catch((e) => {
-      console.log(e)
+       
       response.statusCode = 500
       response.send(e)
     })
@@ -69,7 +69,6 @@ app.get("/entrybymonth", (request, response) => {
       response.send(obj)
     })
     .catch((e) => {
-      console.log(e)
       response.statusCode = 500
       response.send(e)
     })
@@ -85,46 +84,22 @@ app.get("/entrybytoday", (request, response) => {
       response.send(obj)
     })
     .catch((e) => {
-      console.log(e)
       response.statusCode = 500
       response.send(e)
     })
 })
 
-// app.post("/userprofile", (request, response) => {
-//   createProfile(request.user)
-//   .then((obj) => {
-//     response.statusCode = 200
-//     response.send(obj)
-//   }).catch((e) => {
-//     response.statusCode = 500
-//     response.send(e)
-//   })
-// })
+app.post("/userprofile", (request, response) => {
+  createProfile(request.user)
+  .then((obj) => {
+    response.statusCode = 200
+    response.send(obj)
+  }).catch((e) => {
+    response.statusCode = 500
+    response.send(e)
+  })
+})
 
-// app.put("/userprofile", (request, response) => {
-//   const data = request.body
-//   // console.log(data)
-//   updateProfile(request.user,data).then((obj) => {
-//     response.statusCode = 200
-//     response.send(obj)
-//   }).catch((e) => {
-//     response.statusCode = 500
-//     response.send(e)
-//   })
-// })
-
-// app.get("/userprofile", (request, response) => {
-//   getProfile(request.user)
-//   .then((obj) => {
-//     response.statusCode = 200;
-//     response.send(obj);
-//   })
-//   .catch((e) => {
-//     response.statusCode = 404;
-//     response.send(e);
-//   })
-// })
 
 app.put("/incremententries", (request, response) => {
   // console.log(request.user)
