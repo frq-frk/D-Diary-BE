@@ -1,7 +1,7 @@
 const Profile = require('../model/UserProfile')
 
 module.exports.createProfile = async (request, response) => {
-  console.log(request.user)
+
   try {
     const prof = new Profile({
       userId: request.user,

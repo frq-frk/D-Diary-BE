@@ -7,7 +7,6 @@ const cors = require('cors')
 const app = express()
 
 const authMiddleware = require('./src/services/firebase/auth-middleware')
-
 const routes = require('./src/v1/routes/index')
 
 app.use(cors())

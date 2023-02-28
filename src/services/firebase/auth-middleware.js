@@ -6,7 +6,7 @@ const app = initializeApp({
 
 function authMiddleware(request, response, next) {
   const headerToken = request.headers.authorization;
-  console.log(headerToken)
+  
   if (!headerToken) {
     return response.send({ message: "No token provided" }).status(401);
   }
@@ -21,7 +21,6 @@ function authMiddleware(request, response, next) {
     .auth()
     .verifyIdToken(token)
     .then((decodeValue) => {  
-      // console.log(decodeValue)
       request.user = decodeValue.uid
       next()
     })

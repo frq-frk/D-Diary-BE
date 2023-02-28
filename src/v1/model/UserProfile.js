@@ -7,9 +7,6 @@ const Profile = new mongoose.Schema({
     required: true,
   },
 
-  profession: {
-    type: String,
-  },
   bio: {
     type: String,
   },
@@ -53,28 +50,4 @@ module.exports = mongoose.model('UserProfile', Profile)
 
 
 
-function incrimentEntries(UID) {
-  // console.log(UID)
-  return new Promise(async (resolve, reject) => {
-    Profile.findOne({ userId: UID })
-      .then((obj) => {
-        // console.log(obj)
-        Profile.findByIdAndUpdate(obj._id, {
-          $inc: { totalEntries: 1 },
-        })
-          .then((updatedObj) => {
-            resolve(updatedObj)
-          })
-          .catch((e) => {
-             
-            reject(e)
-          })
-      })
-      .catch((e) => {
-         
-        reject(e)
-      })
-  })
-}
 
-module.exports = {  incrimentEntries }

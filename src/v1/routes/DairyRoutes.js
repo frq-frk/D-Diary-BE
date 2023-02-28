@@ -6,10 +6,10 @@ const {
   getEntryByMonthYear,
   getEntryOfToday,
 } = require('../model/DiaryEntry')
-const { books } = require('../../constants/ArrayConstants')
+const { BOOKS } = require('../../constants/ArrayConstants')
 
 route.get('/books', (request, response) => {
-  return response.send({ books })
+  return response.send({ BOOKS })
 })
 
 route.post('/entry', (request, response) => {
