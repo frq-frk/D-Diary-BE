@@ -6,9 +6,9 @@ const {
   incrementEntries
 } = require('../controllers/AuthenticationController')
 
-route.use('/create-profile', createProfile)
-route.use('/update-profile', updateProfile)
-route.use('/get-profile', getProfile)
-route.use('/incrementEntries', incrementEntries)
+route.post('/create-profile', createProfile)
+route.put('/update-profile', updateProfile)
+route.get('/get-profile', getProfile)
+route.put('/incrementEntries', incrementEntries)
 
 module.exports = route
