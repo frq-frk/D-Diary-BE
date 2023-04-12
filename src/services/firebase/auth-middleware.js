@@ -26,7 +26,7 @@ function authMiddleware(request, response, next) {
     })
     .catch((e) => {
        
-      response.send({ message: "Could not authorize" }).status(403)
+      response.send({ message: "Could not authorize", error : e }).status(403)
     });
 }
 
